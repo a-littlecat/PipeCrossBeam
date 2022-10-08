@@ -1,0 +1,109 @@
+﻿<Window x:Class="PipeCrossBeam.PipeCrossBeamView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:bh="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:PipeCrossBeam"
+             mc:Ignorable="d"
+             FontFamily="微软雅黑"
+             WindowStartupLocation="CenterScreen"
+             Title="XP工具箱" 
+             Icon ="ico/xp.ico"
+             Height="480" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel  HorizontalAlignment="Center">
+            <TextBlock DockPanel.Dock="Top" Text="管道穿梁检测" FontWeight="Bold" FontSize="18" />
+        </DockPanel>
+        <StackPanel Grid.Row="1">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="10,16">
+                    <StackPanel Orientation="Horizontal" Margin="5" >
+                        <RadioButton x:Name="bushingReserve" IsChecked="True"  
+                                     Command="{Binding ReserveType}" 
+                                     CommandParameter="{Binding ElementName=bushingReserve,Path=Name}"
+                                     Margin="60,0">
+                            预留套管
+                        </RadioButton>
+                        <RadioButton x:Name="holeReserve"
+                                     Margin="50,0"
+                                     Command="{Binding ReserveType}" 
+                                     CommandParameter="{Binding ElementName=holeReserve,Path=Name}">
+                            预留洞
+                        </RadioButton>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="序  号" Width="35" Margin="5"  TextAlignment="Center"  Height="20"/>
+                        <TextBlock Text="公称直径" Width="35" Margin="5" TextAlignment="Center" TextWrapping ="Wrap" />
+                        <TextBlock Text="留洞尺寸" Width="35" Margin="10,5,5,5" TextAlignment="Center" TextWrapping ="Wrap" />
+                        <TextBlock Text="违反规范的内容" Width="250" Margin="5" TextAlignment="Center"  Height="20"/>
+                    </StackPanel>
+                    <ListBox Margin="0,5" Height="280" x:Name="pipeCrossBeamList" 
+                             ItemsSource="{Binding PipeCrossBeamOutputs}"
+                             SelectionMode="Extended" >
+
+                        <bh:Interaction.Triggers >
+                            <bh:EventTrigger EventName="SelectionChanged"  >
+                                <bh:InvokeCommandAction Command="{Binding PipeAndBeam}" CommandParameter="{Binding ElementName=pipeCrossBeamList, Path =SelectedItems}" x:Name="invoke"/>
+                            </bh:EventTrigger>
+                        </bh:Interaction.Triggers>
+                        
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                    <TextBlock Width="35" Text="{Binding HoleNO, Mode=OneWay}" TextAlignment="Center" />
+                                    <TextBlock Width="50" Text="{Binding Diameter, Mode=OneWay}" TextAlignment="Center" />
+                                    <TextBlock Width="50" Text="{Binding HoleSize, Mode=OneWay}" TextAlignment="Center"/>
+                                    <TextBlock Width="250" Text="{Binding Irregularities, Mode=OneWay}" Margin="20,0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="5" Text="总数：" />
+                        <TextBlock x:Name="pipeNum" Margin="5" Width="50" Text="{Binding PipeCrossBeamOutputs.Count}"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <FlowDocumentScrollViewer>
+                        <FlowDocument  FontSize="13" FontFamily="微软雅黑" >
+                            <Paragraph FontSize="15" >
+                                使用说明：
+                            </Paragraph>
+                            <Paragraph Foreground="#008000">
+                                列表内容单选或多选后可显示不符合规范的穿梁管。
+                            建议结构模型不要采用链接文件，采用链接时无法选择链接中的梁。
+                            </Paragraph>
+
+
+                            <Paragraph FontSize="15">
+                                检测规则说明：
+                            </Paragraph>
+                            <Paragraph>
+                                本插件支持根据《高层建筑混凝土结构技术规程》JGJ 3-2010 6.3.7条检测管道穿梁是否符合规范要求。
+                            </Paragraph>
+                            <Paragraph>
+                                本插件默认留洞尺寸比外径大100mm左右，预留套管尺寸比外径大50mm左右，具体尺寸会细微调整用以符合常用设计
+                            （如在revit中设置有保温层，则会加上保温层的厚度，尺寸单位均为mm）。
+                            </Paragraph>
+                            <Paragraph Foreground="Red">
+                                特别注意：请注意核查模型中的梁跨是否为规范中所定义的梁跨，本插件是根据模型中的梁跨间距校核的。
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

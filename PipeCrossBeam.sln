@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipeCrossBeam", "PipeCrossBeam\PipeCrossBeam.csproj", "{4083687E-F283-436D-A9F1-5F196E0B9996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPTools", "ClassLibrary1\XPTools.csproj", "{34839DEA-CEA5-4E44-BF73-502574D0A7C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4083687E-F283-436D-A9F1-5F196E0B9996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4083687E-F283-436D-A9F1-5F196E0B9996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4083687E-F283-436D-A9F1-5F196E0B9996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4083687E-F283-436D-A9F1-5F196E0B9996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34839DEA-CEA5-4E44-BF73-502574D0A7C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34839DEA-CEA5-4E44-BF73-502574D0A7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34839DEA-CEA5-4E44-BF73-502574D0A7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34839DEA-CEA5-4E44-BF73-502574D0A7C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A70B6104-CC93-408A-AB51-3AA4E0D1B5FE}
+	EndGlobalSection
+EndGlobal
