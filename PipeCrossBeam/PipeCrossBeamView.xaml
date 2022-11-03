@@ -45,7 +45,7 @@
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock Text="序  号" Width="35" Margin="5"  TextAlignment="Center"  Height="20"/>
                         <TextBlock Text="公称直径" Width="35" Margin="5" TextAlignment="Center" TextWrapping ="Wrap" />
-                        <TextBlock Text="留洞尺寸" Width="35" Margin="10,5,5,5" TextAlignment="Center" TextWrapping ="Wrap" />
+                        <TextBlock Text="预留尺寸" Width="35" Margin="10,5,5,5" TextAlignment="Center" TextWrapping ="Wrap" />
                         <TextBlock Text="违反规范的内容" Width="250" Margin="5" TextAlignment="Center"  Height="20"/>
                     </StackPanel>
                     <ListBox Margin="0,5" Height="280" x:Name="pipeCrossBeamList" 
