@@ -78,7 +78,7 @@ namespace PipeCrossBeam
 
             if (Pipes.Count == 0)
             {
-                MessageBox.Show(dialogTitle, "本文件中无管道的信息！");
+                MessageBox.Show("本文件中无管道的信息！",dialogTitle);
 
             }
             else
@@ -86,7 +86,7 @@ namespace PipeCrossBeam
                 BeamAndDocs = GetInformaFromABeam.CollectBeams(doc);     //收集文档中所有的梁的集合
                 if (BeamAndDocs.Keys.Count == 0)
                 {
-                    MessageBox.Show(dialogTitle, "本文件中无梁的信息！");
+                    MessageBox.Show( "本文件中无梁的信息！", dialogTitle);
                 }
                 else
                 {
@@ -398,13 +398,21 @@ public class GetInformaFromABeam
             foreach (ElementId elementId in docLinks)
             {
                 RevitLinkInstance linkInstance = doc.GetElement(elementId) as RevitLinkInstance;
-                Document linkdoc = linkInstance.GetLinkDocument();
-                FilteredElementCollector linkCollector = new FilteredElementCollector(linkdoc);
-                ICollection<ElementId> linkBeam = linkCollector.WherePasses(filter).ToElementIds();
-                if (linkBeam.Count > 0)
+                try
                 {
-                    result.Add(linkBeam, linkdoc);
+                    Document linkdoc = linkInstance.GetLinkDocument();
+                    FilteredElementCollector linkCollector = new FilteredElementCollector(linkdoc);
+                    ICollection<ElementId> linkBeam = linkCollector.WherePasses(filter).ToElementIds();
+                    if (linkBeam.Count > 0)
+                    {
+                        result.Add(linkBeam, linkdoc);
+                    }
                 }
+                catch
+                {
+
+                }
+
             }
         }
         return result;
